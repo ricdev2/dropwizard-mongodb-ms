@@ -1,0 +1,43 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    networks:
+      - dropw-mongodb-ntw
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+    - "8080:80"
+    - "443:443"
+    networks:
+    - dropw-mongodb-ntw
+
+  dropw-ms:
+    image: openjdk:8-jre
+    container_name: dropw-ms
+    volumes:
+    - ./target/dropwizard-mongodb-ms-1.0.0-SNAPSHOT.jar:/microservice/dropwizard-mongodb-ms-1.0.0-SNAPSHOT.jar
+    - ./configuration.yml:/microservice/configuration.yml
+    working_dir: /microservice
+    command: ["java", "-jar", "dropwizard-mongodb-ms-1.0.0-SNAPSHOT.jar", "server", "configuration.yml"]
+    ports:
+    - "8090:8080"
+    - "8091:8081"
+    networks:
+    - dropw-mongodb-ntw
+
+networks:
+  dropw-mongodb-ntw:
+    external:
+      name: dropw-mongodb-ntw

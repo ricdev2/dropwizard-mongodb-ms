@@ -1,0 +1,37 @@
+server:
+  maxThreads: 512
+  applicationContextPath: /dropwizard-mongodb-ms
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
+logging:
+  level: INFO
+  loggers:
+    com.demo: INFO
+
+mongoDBConnection:
+  credentials:
+    username: "user_donuts"
+    password: "pAsw0Rd"
+  seeds:
+    - host: "mongodb"
+      port: 27017
+  database: "donuts"
+
+swagger:
+  basePath: /dropwizard-mongodb-ms
+  resourcePackage: com.demo.resources
+  scan: true
+  info:
+    version: "1.0.0"
+    title: "Donuts API CRUD"
+    description: "A simple API used for expose CRUD operation on MongoDB collection"
+    termsOfService: "http://swagger.io/terms/"
+    contact:
+      name: "Donuts API "
+    license:
+      name: "Rich Lopez"
