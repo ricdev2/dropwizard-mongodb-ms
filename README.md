@@ -1,5 +1,7 @@
 # Dropwizard MongoDB Microservice
 
+[![Build Status](https://travis-ci.org/ricdev2/dropwizard-mongodb-ms.svg?branch=master)](https://travis-ci.org/ricdev2/dropwizard-mongodb-ms)
+
 How to start the application 
 ---
 
