@@ -23,7 +23,7 @@ This microservice is an example that exposes through a REST interface services t
     - Enter to container:
         `docker exec -it [container_name or container_id] /bin/bash`
     - Inside container call the shell for enter console of mongo db with the command
-        `mongo`
+        `mongo -u admin -p admin`
     - Create the database
         `use donuts`
     - Create the user    
